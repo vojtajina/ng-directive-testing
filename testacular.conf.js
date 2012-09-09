@@ -10,6 +10,7 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
+  'lib/jquery-1.8.1.min.js',
   'lib/angular.js',
   'lib/angular-mocks.js',
   'tpl/*.html.js',
