@@ -13,8 +13,7 @@ files = [
   'lib/angular.js',
   'lib/angular-mocks.js',
   'tpl/*.html.js',
-  'app.js',
-  'tabs.js',
+  'js/*.js',
   'test/*.js'
 ];
 
