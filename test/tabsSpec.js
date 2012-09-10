@@ -85,3 +85,77 @@ describe('tabs', function() {
     expect(contents.eq(1)).toHaveClass('active');
   });
 });
+
+
+describe('tabs controller', function() {
+  var scope, ctrl;
+
+  beforeEach(inject(function($controller, $rootScope) {
+    scope = $rootScope;
+
+    // instantiate the controller stand-alone, without the directive
+    ctrl = $controller(TabsController, {$scope: scope, $element: null});
+  }));
+
+
+  describe('select', function() {
+
+    it('should mark given pane selected', function() {
+      var pane = {};
+
+      scope.select(pane);
+      expect(pane.selected).toBe(true);
+    });
+
+
+    it('should deselect other panes', function() {
+      var pane1 = {}, pane2 = {}, pane3 = {};
+
+      ctrl.addPane(pane1);
+      ctrl.addPane(pane2);
+      ctrl.addPane(pane3);
+
+      scope.select(pane1);
+      expect(pane1.selected).toBe(true);
+      expect(pane2.selected).toBe(false);
+      expect(pane3.selected).toBe(false);
+
+      scope.select(pane2);
+      expect(pane1.selected).toBe(false);
+      expect(pane2.selected).toBe(true);
+      expect(pane3.selected).toBe(false);
+
+      scope.select(pane3);
+      expect(pane1.selected).toBe(false);
+      expect(pane2.selected).toBe(false);
+      expect(pane3.selected).toBe(true);
+    });
+  });
+
+
+  describe('addPane', function() {
+
+    it('should append pane', function() {
+      var pane1 = {}, pane2 = {};
+
+      expect(scope.panes).toEqual([]);
+
+      ctrl.addPane(pane1);
+      expect(scope.panes).toEqual([pane1]);
+
+      ctrl.addPane(pane2);
+      expect(scope.panes).toEqual([pane1, pane2]);
+    });
+
+
+    it('should select the first one', function() {
+      var pane1 = {}, pane2 = {};
+
+      ctrl.addPane(pane1);
+      expect(pane1.selected).toBe(true);
+
+      ctrl.addPane(pane2);
+      expect(pane1.selected).toBe(true);
+    });
+  });
+});
