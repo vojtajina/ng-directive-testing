@@ -21,7 +21,16 @@ tabs.directive('tabs', function() {
         panes.push(pane);
       };
     },
-    templateUrl: 'tpl/tabs.html',
+    // templateUrl: 'tpl/tabs.html',
+    template:
+      '<div class="tabbable">' +
+        '<ul class="nav nav-tabs">' +
+          '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
+            '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
+          '</li>' +
+        '</ul>' +
+        '<div class="tab-content" ng-transclude></div>' +
+      '</div>',
     replace: true
   };
 });
@@ -36,7 +45,8 @@ tabs.directive('pane', function() {
     link: function(scope, element, attrs, tabsCtrl) {
       tabsCtrl.addPane(scope);
     },
-    templateUrl: 'tpl/pane.html',
+    // templateUrl: 'tpl/pane.html',
+    template: '<div class="tab-pane" ng-class="{active: selected}" ng-transclude></div>',
     replace: true
   };
 });
