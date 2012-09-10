@@ -5,7 +5,7 @@ describe('tabs', function() {
   beforeEach(module('tabs'));
 
   // load the templates
-  // beforeEach(module('tpl/tabs.html', 'tpl/pane.html'));
+  beforeEach(module('tpl/tabs.html', 'tpl/pane.html'));
 
   beforeEach(inject(function($rootScope, $compile) {
     // we might move this tpl into an html file as well...
