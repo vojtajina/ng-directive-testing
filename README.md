@@ -39,22 +39,25 @@ For instance, if we found a bug in the controller, we would add a lightweight un
 This was nice, but how about external templates ?
 Inlining html templates as strings is kind of nasty (eg. you don’t get syntax highlighting and linting in IDE), so we want to put the templates into external html files.
 How do you test that? You want to test these html files as well, otherwise it makes no sense.
-Well, with [Testacular] this is pretty easy - [you can use preprocessors for that](https://github.com/vojtajina/ng-directive-testing/commit/use-preprocessor).
+Well, with [Karma] this is pretty easy - you can use `html2js` preprocessors for that.
 
-Now, whenever you change any of the html files, Testacular immediately generates the js file, that puts the html into `$templateCache`.
+Now, whenever you change any of the html files, Karma immediately generates the js file, that puts the html into `$templateCache`.
 
 ------
 
-Note, you need testacular v0.3.0+ to use this feature, so install canary to try it.
+### Install Karma
 
-    npm install -g testacular@canary
+````
+npm install -g karma
+````
 
+### Start Karma
 
-There's also a grunt task to watch the templates and generate the js file, that puts the template into `$templateCache`.
-
-    grunt watch:templates
+````
+karma start
+````
 
 
 [AngularJS]: http://angularjs.org
 [angular homepage]: http://angularjs.org/#create-components
-[Testacular]: https://github.com/vojtajina/testacular
+[Karma]: https://karma-runner.github.com

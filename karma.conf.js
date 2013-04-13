@@ -28,7 +28,7 @@ files = [
 
 // generate js files from html templates
 preprocessors = {
-  '**/*.html': 'html2js'
+  'tpl/*.html': 'html2js'
 };
 
 // list of files to exclude
@@ -37,7 +37,7 @@ exclude = [];
 
 // test results reporter to use
 // possible values: dots || progress
-reporter = 'progress';
+reporters = ['progress'];
 
 
 // web server port
