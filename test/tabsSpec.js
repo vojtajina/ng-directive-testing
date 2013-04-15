@@ -1,3 +1,7 @@
+// for IE8
+document.createElement('tabs');
+document.createElement('pane');
+
 describe('tabs', function() {
   var elm, scope;
 
@@ -8,23 +12,28 @@ describe('tabs', function() {
   beforeEach(module('tpl/tabs.html', 'tpl/pane.html'));
 
   beforeEach(inject(function($rootScope, $compile) {
-    // we might move this tpl into an html file as well...
-    elm = angular.element(
-      '<div>' +
-        '<tabs>' +
-          '<pane title="First Tab">' +
-            'first content is {{first}}' +
-          '</pane>' +
-          '<pane title="Second Tab">' +
-            'second content is {{second}}' +
-          '</pane>' +
-        '</tabs>' +
-      '</div>');
+    // IE8: we have to append it to the document, before using custom elements
+    elm = angular.element('<div>').appendTo(document.body);
+
+    elm.html(
+      '<tabs>' +
+        '<pane title="First Tab">' +
+          'first content is {{first}}' +
+        '</pane>' +
+        '<pane title="Second Tab">' +
+          'second content is {{second}}' +
+        '</pane>' +
+      '</tabs>'
+    );
 
     scope = $rootScope;
     $compile(elm)(scope);
     scope.$digest();
   }));
+
+  afterEach(function() {
+    elm.remove();
+  })
 
 
   it('should create clickable titles', inject(function($compile, $rootScope) {
