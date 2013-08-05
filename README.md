@@ -60,4 +60,4 @@ karma start
 
 [AngularJS]: http://angularjs.org
 [angular homepage]: http://angularjs.org/#create-components
-[Karma]: https://karma-runner.github.com
+[Karma]: https://karma-runner.github.io

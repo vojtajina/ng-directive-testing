@@ -1,76 +1,34 @@
-// Testacular configuration
-// Generated on Tue Aug 14 2012 20:05:21 GMT-0700 (PDT)
+// Karma configuration file
+// See http://karma-runner.github.io/0.10/config/configuration-file.html
+module.exports = function(config) {
+  config.set({
+    basePath: '',
 
+    frameworks: ['jasmine'],
 
-// base path, that will be used to resolve files and exclude
-basePath = '';
+    // list of files / patterns to load in the browser
+    files: [
+      // libraries
+      'lib/jquery-1.8.1.min.js',
+      'lib/angular.js',
+      'lib/angular-mocks.js',
 
+      // our app
+      'js/*.js',
 
-// list of files / patterns to load in the browser
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
+      // tests
+      'test/*.js',
 
-  // libraries
-  'lib/jquery-1.8.1.min.js',
-  'lib/angular.js',
-  'lib/angular-mocks.js',
+      // templates
+      'tpl/*.html'
+    ],
 
-  // our app
-  'js/*.js',
+    // generate js files from html templates
+    preprocessors: {
+      'tpl/*.html': 'ng-html2js'
+    },
 
-  // tests
-  'test/*.js',
-
-  // templates
-  'tpl/*.html'
-];
-
-// generate js files from html templates
-preprocessors = {
-  'tpl/*.html': 'html2js'
+    autoWatch: true,
+    browsers: ['Chrome']
+  });
 };
-
-// list of files to exclude
-exclude = [];
-
-
-// test results reporter to use
-// possible values: dots || progress
-reporters = ['progress'];
-
-
-// web server port
-port = 9876;
-
-
-// cli runner port
-runnerPort = 9100;
-
-
-// enable / disable colors in the output (reporters and logs)
-colors = true;
-
-
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
-
-
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = true;
-
-
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari
-// - PhantomJS
-browsers = ['Chrome'];
-
-
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun = false;

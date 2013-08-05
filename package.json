@@ -2,7 +2,7 @@
   "name": "ng-directive-testing",
   "version": "0.0.0",
   "description": "An example of testing AngularJS directives with Karma.",
-  "main": "\"\"",
+  "main": "",
   "scripts": {
     "test": "karma start --single-run --no-auto-watch"
   },
@@ -12,9 +12,11 @@
   },
   "author": "Vojta Jina <vojta.jina@gmail.com>",
   "license": "MIT",
-  "readmeFilename": "README.md",
-  "gitHead": "f5d7ad2369e0ae0eaf9f3df4117c8d38f0a80631",
   "devDependencies": {
-    "karma": "~0.8"
+    "karma": "~0.10",
+    "karma-jasmine": "*",
+    "karma-chrome-launcher": "*",
+    "karma-firefox-launcher": "*",
+    "karma-ng-html2js-preprocessor": "*"
   }
 }
