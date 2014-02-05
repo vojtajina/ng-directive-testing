@@ -27,13 +27,13 @@ describe('tabs', function() {
   }));
 
 
-  it('should create clickable titles', inject(function($compile, $rootScope) {
+  it('should create clickable titles', function() {
     var titles = elm.find('ul.nav-tabs li a');
 
     expect(titles.length).toBe(2);
     expect(titles.eq(0).text()).toBe('First Tab');
     expect(titles.eq(1).text()).toBe('Second Tab');
-  }));
+  });
 
 
   it('should bind the content', function() {
