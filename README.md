@@ -13,10 +13,10 @@ Let’s take the tabs component from [angular homepage].
 
 It would be difficult to test the visual representation of the component, but there are many functional aspects of this component that are worthy testing, for instance:
 
-- does it render correct structure (eg. navigation and content for each pane)
-- does the binding inside the content works
-- does clicking particular tab link cause changing of the active pane
-- is the first tab selected by default
+- Does it render correct structure (e.g. navigation and content for each pane)?
+- Does the binding inside the content work?
+- Does clicking the particular tab link cause changing of the active pane?
+- Is the first tab selected by default?
 
 Check out the tests at https://github.com/vojtajina/ng-directive-testing/blob/start/test/tabsSpec.js
 
