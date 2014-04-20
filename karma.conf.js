@@ -20,12 +20,14 @@ module.exports = function(config) {
       'test/*.js',
 
       // templates
-      'tpl/*.html'
+      'tpl/*.html',
+      'test/tpl/*.html'
     ],
 
     // generate js files from html templates
     preprocessors: {
-      'tpl/*.html': 'ng-html2js'
+      'tpl/*.html': ['ng-html2js'],
+      'test/tpl/*.html' : ['ng-html2js']
     },
 
     autoWatch: true,
