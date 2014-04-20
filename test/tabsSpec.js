@@ -5,27 +5,19 @@ describe('tabs', function() {
   beforeEach(module('tabs'));
 
   // load the templates
-  beforeEach(module('tpl/tabs.html', 'tpl/pane.html'));
+  beforeEach(module('tpl/tabs.html', 'tpl/pane.html',
+    'test/tpl/test_element.html'));
 
-  beforeEach(inject(function($rootScope, $compile) {
-    // we might move this tpl into an html file as well...
+  beforeEach(inject(function($rootScope, $compile,
+    $templateCache) {
+
     elm = angular.element(
-      '<div>' +
-        '<tabs>' +
-          '<pane title="First Tab">' +
-            'first content is {{first}}' +
-          '</pane>' +
-          '<pane title="Second Tab">' +
-            'second content is {{second}}' +
-          '</pane>' +
-        '</tabs>' +
-      '</div>');
+      $templateCache.get('test/tpl/test_element.html'));
 
     scope = $rootScope;
     $compile(elm)(scope);
     scope.$digest();
   }));
-
 
   it('should create clickable titles', inject(function($compile, $rootScope) {
     var titles = elm.find('ul.nav-tabs li a');
@@ -40,16 +32,16 @@ describe('tabs', function() {
     var contents = elm.find('div.tab-content div.tab-pane');
 
     expect(contents.length).toBe(2);
-    expect(contents.eq(0).text()).toBe('first content is ');
-    expect(contents.eq(1).text()).toBe('second content is ');
+    expect(contents.eq(0).text().trim()).toBe('first content is');
+    expect(contents.eq(1).text().trim()).toBe('second content is');
 
     scope.$apply(function() {
       scope.first = 123;
       scope.second = 456;
     });
 
-    expect(contents.eq(0).text()).toBe('first content is 123');
-    expect(contents.eq(1).text()).toBe('second content is 456');
+    expect(contents.eq(0).text().trim()).toBe('first content is 123');
+    expect(contents.eq(1).text().trim()).toBe('second content is 456');
   });
 
 
