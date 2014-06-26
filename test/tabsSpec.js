@@ -26,7 +26,19 @@ describe('tabs', function() {
     scope.$digest();
   }));
 
+  // NOTE: All these tests take into account that the directive has been "replaced"
+  // with the tpl code provided to the directive
+  // =========================================================================
 
+  /**
+   * This test checks that the title attribute was correctly applied to the <a> links
+   * inside the panes.
+   * 
+   *   - Looks up the [DOM element] nav tab <a> links
+   *   - Checks that the links exist with .length
+   *   - Checks the .text() to confirm that the title text is correctly bound inside
+   *   
+   */
   it('should create clickable titles', inject(function($compile, $rootScope) {
     var titles = elm.find('ul.nav-tabs li a');
 
@@ -36,8 +48,19 @@ describe('tabs', function() {
   }));
 
 
+  /**
+   * This test checks that the tab pane content was correctly bound to the dom.
+   * The way it checks the bindings:
+   * 
+   *   - Looks up the [DOM element] pane content that should contain the inner bindings
+   *   - Checks to see that the elements exist with .length
+   *   - Checks to see that there is no content when no model is available
+   *   - Creates two variables on the scope that will be bound in the directive
+   *   - Checks that the directive contains the correct binding
+   *   
+   */
   it('should bind the content', function() {
-    var contents = elm.find('div.tab-content div.tab-pane');
+    var contents = elm.find('.tab-pane');
 
     expect(contents.length).toBe(2);
     expect(contents.eq(0).text()).toBe('first content is ');
@@ -52,7 +75,14 @@ describe('tabs', function() {
     expect(contents.eq(1).text()).toBe('second content is 456');
   });
 
-
+  /**
+   * This test checks that the active class was correctly set on the title with ng-class.
+   *
+   *  - Looks up the [DOM element] pane title that should contain the active class, "li"
+   *  - Checks that the first element contains the .active class
+   *  - Checks that the second element does not contain the .active class
+   *  
+   */
   it('should set active class on title', function() {
     var titles = elm.find('ul.nav-tabs li');
 
@@ -60,7 +90,14 @@ describe('tabs', function() {
     expect(titles.eq(1)).not.toHaveClass('active');
   });
 
-
+  /**
+   * This test checks that the active class was correctly set on the tab content.
+   *   
+   *   - Looks up the [DOM element] tab pane that should contain the active class
+   *   - Checks that the first element contains the active classs
+   *   - Checks that the second element does not contain the active class
+   *   
+   */
   it('should set active class on content', function() {
     var contents = elm.find('div.tab-content div.tab-pane');
 
@@ -69,6 +106,18 @@ describe('tabs', function() {
   });
 
 
+  /**
+   * This test checks that the active pane was changed when a different title was selected.
+   *   
+   *   - Looks up the [DOM element] titles that should contain the active class
+   *   - Looks up the [DOM element] contents that should contain the active class
+   *   - Dispatches a click event on the second tab
+   *   - Checks that first title does not contain the active class
+   *   - Checks that second title does contain the active class
+   *   - Checks that the first contents does not contain the active class
+   *   - Ckecks that the second contents does contain the active class
+   *   
+   */
   it('should change active pane when title clicked', function() {
     var titles = elm.find('ul.nav-tabs li');
     var contents = elm.find('div.tab-content div.tab-pane');
@@ -87,9 +136,13 @@ describe('tabs', function() {
 });
 
 
+/**
+ * This suite of tests checks whether the tabs controller works as expected against the inside panes
+ */
 describe('tabs controller', function() {
   var scope, ctrl;
 
+  // inject the $controller and $rootscope service
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope;
 
@@ -99,7 +152,14 @@ describe('tabs controller', function() {
 
 
   describe('select', function() {
-
+    /**
+     * This test checks that a pane has been selected correctly.
+     * 
+     *   - Mocks a pane scope
+     *   - Selects the pane from the controller scope
+     *   - Checks that the pane has a {selected} property that equals {true}
+     *   
+     */
     it('should mark given pane selected', function() {
       var pane = {};
 
@@ -107,7 +167,19 @@ describe('tabs controller', function() {
       expect(pane.selected).toBe(true);
     });
 
-
+    /**
+     * This test checks that panes are de-selected correctly
+     * 
+     *   - Create multiple mock scopes that should each be de-selected
+     *   - Create multiple panes using the controller utiltiy method
+     *   - Select the first pane
+     *   - Check that other panes are de-selected
+     *   - Select the second pane
+     *   - Check that the other panes are de-selected
+     *   - Select the third pane
+     *   - Check that the other panes are de-selected
+     *   
+     */
     it('should deselect other panes', function() {
       var pane1 = {}, pane2 = {}, pane3 = {};
 
@@ -135,6 +207,16 @@ describe('tabs controller', function() {
 
   describe('addPane', function() {
 
+    /**
+     * This test checks the a pane has been correctly appended to tabs scope
+     * 
+     *   - Create multiple mock scopes that should be appended to the tabs scope
+     *   - Add the first pane to the tabs scope with the utility method
+     *   - Check that the first pane was correctly added to the tabs scope
+     *   - Add the second pane to the tabs scope with the utility method
+     *   - Check that the second pane was correctly added the the tabs scope
+     *   
+     */
     it('should append pane', function() {
       var pane1 = {}, pane2 = {};
 
@@ -147,7 +229,16 @@ describe('tabs controller', function() {
       expect(scope.panes).toEqual([pane1, pane2]);
     });
 
-
+    /**
+     * This test checks the first pane is and remains selected when adding multiple panes
+     *
+     *  - Creates multiple mocks scopes that should be appended to the tabs scope
+     *  - Add the first pane to the tabs scope
+     *  - Check that the first pane is selected
+     *  - Add the second pane to the tabs scope
+     *  - Check that the second pane is still selected
+     *  
+     */
     it('should select the first one', function() {
       var pane1 = {}, pane2 = {};
 
