@@ -45,10 +45,10 @@ Now, whenever you change any of the html files, Karma immediately generates the 
 
 ------
 
-### Install Karma
+### Install Karma CLI
 
 ````
-npm install -g karma
+npm install -g karma-cli
 ````
 
 ### Start Karma
@@ -57,6 +57,11 @@ npm install -g karma
 karma start
 ````
 
+### Single Run Specs
+
+````
+npm test
+````
 
 [AngularJS]: http://angularjs.org
 [angular homepage]: http://angularjs.org/#create-components
