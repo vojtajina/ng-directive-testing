@@ -4,7 +4,7 @@
   "description": "An example of testing AngularJS directives with Karma.",
   "main": "",
   "scripts": {
-    "test": "karma start --single-run --no-auto-watch"
+    "test": "./node_modules/karma/bin/karma start --single-run --no-auto-watch"
   },
   "repository": {
     "type": "git",
