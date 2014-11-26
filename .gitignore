@@ -1,2 +1,3 @@
 node_modules
 tpl/*.js
+npm-debug.log
