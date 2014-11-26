@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app', ['tabs']);
+  angular.module('app', ['tabs'])
 
     .controller('BeerCounter', function($scope, $locale) {
       $scope.beers = [0, 1, 2, 3, 4, 5, 6];
