@@ -8,7 +8,7 @@
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
     "pretest": "npm install",
-    "test": "karma start --single-run --no-auto-watch"
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "*",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "*",
     "karma-jasmine": "*",
     "karma-jasmine-jquery": "^0.1.1",

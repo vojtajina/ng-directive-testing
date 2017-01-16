@@ -24,9 +24,18 @@ module.exports = function(config) {
 
     // generate js files from html templates
     preprocessors: {
-      'tpl/*.html': 'ng-html2js'
+      'tpl/*.html': 'ng-html2js',
+      'src/**/*.js': ['coverage']
     },
 
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
+    singleRun: false,
     autoWatch: true,
     browsers: ['Chrome']
   });
