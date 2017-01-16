@@ -4,14 +4,13 @@ module.exports = function(config) {
   config.set({
     basePath: '',
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine-jquery', 'jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
       // libraries
-      'lib/jquery-1.8.1.min.js',
-      'lib/angular.js',
-      'lib/angular-mocks.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
 
       // our app
       'js/*.js',
@@ -25,9 +24,18 @@ module.exports = function(config) {
 
     // generate js files from html templates
     preprocessors: {
-      'tpl/*.html': 'ng-html2js'
+      'tpl/*.html': 'ng-html2js',
+      'src/**/*.js': ['coverage']
     },
 
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
+    singleRun: false,
     autoWatch: true,
     browsers: ['Chrome']
   });

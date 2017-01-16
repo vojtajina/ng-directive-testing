@@ -4,7 +4,11 @@
   "description": "An example of testing AngularJS directives with Karma.",
   "main": "",
   "scripts": {
-    "test": "karma start --single-run --no-auto-watch"
+    "postinstall": "bower install",
+    "update-deps": "npm update",
+    "postupdate-deps": "bower update",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -13,10 +17,14 @@
   "author": "Vojta Jina <vojta.jina@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "karma": "~0.10",
-    "karma-jasmine": "*",
+    "bower": "^1.8.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
     "karma-chrome-launcher": "*",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-jasmine-jquery": "^0.1.1",
     "karma-ng-html2js-preprocessor": "*"
   }
 }
